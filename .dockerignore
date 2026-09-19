@@ -1,0 +1,9 @@
+﻿node_modules
+.output
+.git
+.npm-cache
+.verification
+.data
+.env
+.env.*
+artifacts

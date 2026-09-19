@@ -1,0 +1,12 @@
+﻿import { randomUUID } from "node:crypto";
+import { resolve } from "node:path";
+import { createClinic } from "../server/clinic.mjs";
+process.env.DATABASE_PATH = resolve(`.verification/browser-${randomUUID()}.sqlite`);
+process.env.PORT = "5180";
+process.env.HOST = "127.0.0.1";
+delete process.env.SITE_URL;
+delete process.env.COOKIE_SECURE;
+const clinic = createClinic();
+await clinic.createOwner("browser-owner", "Browser-test-only-password!");
+clinic.close();
+await import("../.output/server/index.mjs");
